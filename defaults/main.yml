@@ -1,0 +1,3 @@
+---
+# defaults file for node
+npm_install: []

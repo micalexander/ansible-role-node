@@ -1,0 +1,19 @@
+---
+- name: add apt key for yarn
+  apt_key: url=https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: Add Yarn repository
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+
+- name: Install list of packages
+  apt:
+    state: present
+    update_cache: yes
+    name: [
+      'nodejs',
+      'npm',
+      'yarn',
+    ]
+

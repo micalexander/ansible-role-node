@@ -1,0 +1,17 @@
+---
+- name: install npm packages for root
+  npm:
+    name: "{{ item }}"
+    state: present
+    global: yes
+  with_items: "{{ npm_install }}"
+  when: npm_install is defined and user is not defined
+- name: install npm packages for "{{ user }}"
+  become: yes
+  become_user: "{{ user }}"
+  npm:
+    name: "{{ item }}"
+    state: present
+    global: yes
+  with_items: "{{ npm_install }}"
+  when: npm_install is defined and user is defined
