@@ -1,9 +1,12 @@
 ---
 - name: ensure global .npmrc files is present in home directory
+  become: yes
+  become_user: "{{ user }}"
   lineinfile:
     path: ~/.npmrc
     line: 'prefix = ${HOME}/.npm'
     create: yes
+  when: npm_install is defined and user is defined
 - name: install npm packages for root
   npm:
     name: "{{ item }}"
