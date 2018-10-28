@@ -12,6 +12,7 @@
   npm:
     name: "{{ item }}"
     state: present
+    path: ~/.npm
     global: yes
   with_items: "{{ npm_install }}"
   when: npm_install is defined and user is defined
