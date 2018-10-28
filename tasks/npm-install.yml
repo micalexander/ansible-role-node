@@ -1,4 +1,9 @@
 ---
+- name: ensure global .npmrc files is present in home directory
+  lineinfile:
+    path: ~/.npmrc
+    line: 'prefix = ${HOME}/.npm'
+    create: yes
 - name: install npm packages for root
   npm:
     name: "{{ item }}"
